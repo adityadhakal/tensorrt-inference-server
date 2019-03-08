@@ -1,4 +1,4 @@
-# Copyright (c) 2018, NVIDIA CORPORATION. All rights reserved.
+# Copyright (c) 2018-2019, NVIDIA CORPORATION. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions
@@ -32,6 +32,8 @@ cc_library(
     name = "main",
     srcs = ["main.cc"],
     deps = [
+        "//src/core:grpc_server",
+        "//src/core:http_server",
         "//src/core:logging",
         "//src/core:server",
     ],

@@ -55,7 +55,6 @@ class HTTPServerImpl : public HTTPServer {
   static void Dispatch(evhtp_request_t* req, void* arg);
 
   tensorflow::Status Start() override;
-
   tensorflow::Status Stop() override;
 
  private:
