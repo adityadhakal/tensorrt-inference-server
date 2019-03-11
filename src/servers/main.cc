@@ -349,23 +349,8 @@ main(int argc, char** argv)
     exit(1);
   }
 
-  // Trap SIGINT and SIGTERM to allow server to exit gracefully
-  signal(SIGINT, SignalHandler);
-  signal(SIGTERM, SignalHandler);
-
-  // Watch for changes in the model repository.
-  server_->WatchModelRepository();
-
-  // The main thread doesn't exit. The inference server is only
-  // stopped by sending it a signal and then the exit_thread_ in the
-  // signal handler exits the process. I don't believe these stop
-  // methods don't actually return...
-  if (grpc_service_) {
-    grpc_service_->Stop();
-  }
-  if (http_service_ != nullptr) {
-    http_service_->Stop();
-  }
+  http_service_.reset();
+  grpc_service_.reset();
 
   return 0;
 }
